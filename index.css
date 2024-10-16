@@ -1,0 +1,527 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primaryColor: rgb(38, 107, 203);
+    --primaryColorActive: rgb(48, 94, 159);
+    --secondaryColor: rgb(32, 120, 243);
+    --activeBgColor: rgb(199, 199, 199);
+}
+
+/* Needed this in code, inherits viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    display: grid;
+    grid-template-columns: 200px minmax(400px, calc(100vw - 200px));
+    grid-template-rows: 60px 1fr;
+
+    grid-template-areas: 
+        "logo user-profile"
+        "sidebar main-content";
+
+    font-family: Arial, Helvetica, sans-serif
+}
+
+
+/* Logo @topleft*/
+.logo {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: 1fr;
+
+    align-items: center;
+    padding-left: 8px;
+    padding-top: 5px;
+    color: white;
+    background-color: var(--primaryColor);
+}
+.symbol {
+    width: 30px;
+    height: 30px;
+    margin: auto 1px auto auto; 
+    user-select: none;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 2px;
+}
+.logo p {
+    margin-left: 8px; /**/
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+.item {
+    background-color:whitesmoke;
+}
+.one {
+    grid-column: 1;
+    grid-row: 1/5;
+}
+.two {
+    grid-column: 1;
+    grid-row: 5/7;
+}
+.three {
+    grid-column: 2;
+    grid-row: 1/3;
+}
+.four {
+    grid-column: 2;
+    grid-row: 3/7;
+}
+
+
+/* Sidebar @side*/
+.sidebar {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 250px);
+    row-gap: 2rem;
+
+    padding: 2rem 8px 5px 8px;
+    user-select: none;
+    background-color: var(--primaryColor);
+}
+.links {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 30px);
+    row-gap: 8px;
+}
+.link {
+    /* in line with logo symbol */
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: 1fr;
+
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+    transition: all 150ms ease;
+}
+.link:hover {
+    background-color: var(--primaryColorActive);
+}
+/* Icon Styling */
+.icon {
+    width: 21px;
+    margin: auto auto auto 23px;
+}
+.link .icon {
+    filter: invert(1);
+}
+.link p {
+    margin-left: 9px;
+    color: white;
+    font-weight: 600;
+}
+
+
+/* User Profile @topright*/
+.user-profile {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) 250px;
+    grid-template-rows: 1fr;
+
+    padding: 5px 8px 5px 8px;
+    align-items: center;
+    background-color: white;
+}
+.user-search {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: 1fr;
+
+    align-items: center;
+    padding-top: 2px;
+}
+.user-search label {
+    height: 30px;
+    width: 30px;
+    align-self: center;
+    justify-self: center;
+}
+#search {
+    margin: 0 !important; 
+    width: 30px;
+    filter: invert(0);
+}
+#user-search-text {
+    width: 80%;
+    height: 28px;
+    border: none;
+    border-radius: 1rem;
+    padding: 0 1rem 0 1rem;
+    font-size: 20px;
+    background-color: rgb(239, 239, 239);
+}
+.user {
+    display: grid;
+    grid-template-columns: 50px 50px 1fr;
+    grid-template-rows: 1fr;
+}
+.bell-container {
+    width: 35px;
+    height: 35px;
+    margin: auto;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 150ms ease;
+    user-select: none;
+}
+.bell-container:active {
+    background-color: var(--activeBgColor)
+}
+#bell {
+    margin: auto;
+    width: 25px;
+    border-radius: 50%;
+}
+.user-profile-icon-container {
+    margin: auto;
+    user-select: none;
+
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 300ms ease-out;
+}
+.user-profile-icon-container:hover {
+    background-color: whitesmoke;
+}
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 1px 0px grey;
+}
+.user-name {
+    margin: auto;
+    color: black;
+    font-weight: 800;
+    font-size: 15px;
+}
+
+
+/* Main Content @bottom half*/
+.main-content {
+    display: grid;
+    grid-template-columns: minmax(400px, 1fr);
+    grid-template-rows: 80px 1fr;
+    grid-template-areas: 
+        "user-banner"
+        "user-cards";
+
+    padding-top: 5px;
+    padding-bottom: 1.2rem;
+}
+/* User Banner */
+.user-banner {
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+        "user-greeting user-button-container"
+    ;
+
+    align-items: center;
+}
+.user-greeting {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "banner-profile-icon user-greeting-text"
+    ;
+
+    align-items: center;
+}
+.banner-profile-icon-container {
+    width: calc(55px + 8px);
+    height: calc(55px + 8px);
+    border-radius: 50%;
+    margin: 5px 0 auto 1.5rem;
+    transition: all 300ms ease-out;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.banner-profile-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 1px 0px grey;
+}
+.user-greeting-text {
+    margin-top: 8px;
+}
+.user-greeting-text .user-name {
+    margin: 0;
+    color: black;
+    font-size: 1.5rem;
+}
+.at-user-name {
+    font-size: 15px;
+}
+
+.user-button-container {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: 1fr;
+    gap: 1rem;
+
+    justify-content: end;
+    margin-right: 2rem;
+    margin-top: 10px;
+}
+.button {
+    width: 100px;
+    height: 30px;
+    background-color: var(--primaryColor);
+    border-radius: 1rem;
+
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    align-content: center;
+    user-select: none;
+}
+.button:hover {
+    transform: scale(1.01);
+    background-color: rgb(39, 90, 162);
+}
+.button:active {
+    background-color: rgb(39, 80, 138);
+}
+
+
+/* User-Cards @bottomHalf*/
+.user-cards {
+    display: grid;
+    grid-template-columns: minmax(600px, 675px) 275px;
+    grid-template-rows: 30px 1fr;
+    grid-template-areas:
+        "title title2"
+        "projects-cards other-cards"
+    ;
+    column-gap: 1rem;
+
+    padding-top: 1.5rem;
+    box-shadow: inset 0px 5px 10px -6px grey;
+}
+.projects-cards {
+    grid-column: 1;
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+    grid-template-rows: repeat(3, minmax(200px,220px));
+    grid-template-areas:
+        "card card2"
+        "card3 card4"
+        "card5 card6"
+    ;
+    gap: 14px;
+
+    margin-left: 2rem;
+    overflow: auto;
+}
+/* Title Styling */
+.projects-title, .announcements-title, .trending-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.projects-title {
+    margin-left: 2rem;
+    align-content: center;
+}
+.announcements-title {
+    align-content: center;
+}
+/* Card Styling */
+.card {
+    display: grid;
+    grid-template-columns: 9px 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "design content"
+    ;
+
+    width: 100%;
+    height: 100%;
+    background-color: whitesmoke;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+.card .design {
+    background-color: #ffdf7e;
+}
+.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(150px, 1fr) 40px;
+    grid-template-areas:
+        "content-text"
+        "content-icons"
+    ;
+    gap: 5px;
+    
+    padding: 10px;
+}
+.content-text {
+    padding-top: 1rem;
+    line-height: 1.3;
+}
+.content-text .title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.content-description {
+    font-size: 13px;
+}
+.content-icons {
+    display: grid;
+    grid-template-columns: repeat(3, 33px);
+    grid-template-rows: 33px;
+    grid-template-areas:
+        "icon1 icon2 icon3"
+    ;
+    gap: 1rem;
+    
+    justify-content: end;
+    align-content: center;
+    user-select: none;
+}
+/* Button Active Styling */
+.card-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+    transition: all 50ms ease-out;
+}
+.card-icon-container:hover {
+    background-color: var(--activeBgColor);
+}
+.card-icon-container:active {
+    background-color: rgb(175, 175, 175);
+}
+.card-icon {
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+}
+/* Other Cards Styling */
+.other-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px 30px 358px;
+    grid-template-areas:
+        "Announcements"
+        "title3"
+        "Trending"
+    ;
+    margin-right: 2rem;
+}
+.announcements-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 80px);
+    grid-template-areas:
+        "a1"
+        "a2"
+        "a3"
+    ;
+    gap: 5px;
+    padding: 0 18px 0 18px;
+    margin-bottom: 1.5rem;
+
+    border-radius: 1rem;
+    background-color: whitesmoke;
+    align-content: center;
+}
+.announcement {
+    overflow: hidden;
+    padding: 8px;
+    border-bottom: 1px rgb(199, 199, 199) solid;
+    cursor: pointer;
+}
+.a-last {
+    border-bottom: none;
+}
+.announcement p {
+    font-size: 12px;
+}
+.a-title {
+    font-weight: bold;
+    font-size: 14px !important;
+}
+/* Line Clamp */
+.a-text {
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+.trending-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas:
+        "user1"
+        "user2"
+        "user3"
+        "user4"
+        "user5"
+    ;
+    
+    padding: 14px;
+    padding-left: 18px;
+    border-radius: 1rem;
+    background-color: whitesmoke;
+    align-content: center;
+}
+.trending-user {
+    display: grid;
+    grid-template-columns: 45px 1fr;
+    grid-template-rows: repeat(2, 22.5px);
+    grid-template-areas:
+        "icon user-name"
+        "icon user-project"
+    ;
+    column-gap: 5px;
+
+    padding: 10px;
+    align-self: center;
+    cursor: pointer;
+}
+.trending-user img {
+    grid-row: 1/-1;
+    margin: auto;
+}
+.trending-user-name {
+    margin-top: 5px;
+    font-weight: bold;
+}
+.trending-user-name, .trending-user-project {
+    font-size: 12px;
+    align-self: center;
+}
